@@ -1,0 +1,10 @@
+<div class="tv-shows-list">
+  <mat-card *ngFor="let show of tvShows$ | async" class="tv-shows-list__card">
+    <img mat-card-image [src]="'https://image.tmdb.org/t/p/w500' + show.poster_path" alt="{{ show.name }}" class="tv-shows-list__card-image">
+    <mat-card-title class="tv-shows-list__card-title">{{ show.name }}</mat-card-title>
+    <mat-card-content class="tv-shows-list__card-content">
+      <p class="tv-shows-list__card-rating">Rating: {{ show.vote_average | round }} / 10</p>
+      <p class="tv-shows-list__card-description">{{ show.overview }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,10 @@
+<div class="movies-list">
+  <mat-card *ngFor="let movie of movies$ | async" class="movies-list__card">
+    <img mat-card-image [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="{{ movie.title }}" class="movies-list__card-image">
+    <mat-card-title class="movies-list__card-title">{{ movie.title }}</mat-card-title>
+    <mat-card-content class="movies-list__card-content">
+      <p class="movies-list__card-rating">Rating: {{ movie.vote_average | round }} / 10</p>
+      <p class="movies-list__card-description">{{ movie.overview }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>

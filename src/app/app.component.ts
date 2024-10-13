@@ -1,13 +1,19 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'movie-tv-app';
+  constructor(private router: Router) {}
+
+  onTabChanged(event: any) {
+    if (event.index === 0) {
+      this.router.navigate(['/tv-shows']);
+    } else if (event.index === 1) {
+      this.router.navigate(['/movies']);
+    }
+  }
 }
