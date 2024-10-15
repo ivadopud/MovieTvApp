@@ -8,17 +8,16 @@ import { environment } from '../../environments/environment';
 })
 export class MovieTvService {
   private apiKey = environment.apiKey;
-  private baseUrl = 'https://api.themoviedb.org/3';
+  private baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
-  getTopMovies(): Observable<any> {
-    console.log('Calling getTopMovies');
-    return this.http.get(`${this.baseUrl}/movie/top_rated?api_key=${this.apiKey}&language=en-US&page=1`);
+  getTopMovies(page: number = 1): Observable<any> {
+    return this.http.get(`${this.baseUrl}/movie/top_rated?api_key=${this.apiKey}&language=en-US&page=${page}`);
   }
-  
-  getTopTvShows(): Observable<any> {
-    console.log('Calling getTopTvShows');
-    return this.http.get(`${this.baseUrl}/tv/top_rated?api_key=${this.apiKey}&language=en-US&page=1`);
+
+  getTopTvShows(page: number = 1): Observable<any> {
+    return this.http.get(`${this.baseUrl}/tv/top_rated?api_key=${this.apiKey}&language=en-US&page=${page}`);
   }
 }
+

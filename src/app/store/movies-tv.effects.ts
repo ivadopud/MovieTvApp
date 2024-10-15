@@ -6,47 +6,46 @@ import * as MovieTvActions from './movies-tv.actions';
 
 @Injectable()
 export class MovieTvEffects {
-  
   constructor(
     private actions$: Actions,
     private movieTvService: MovieTvService,
     private store: Store
   ) {
-    console.log('MovieTvEffects constructor');
-
     this.actions$.subscribe(action => {
       if (action.type === MovieTvActions.loadTopMovies.type) {
-        this.loadMovies();
+        const loadMoviesAction = action as ReturnType<typeof MovieTvActions.loadTopMovies>;
+        this.loadMovies(loadMoviesAction.page);
       }
     });
 
     this.actions$.subscribe(action => {
       if (action.type === MovieTvActions.loadTopTvShows.type) {
-        this.loadTvShows();
+        const loadTvShowsAction = action as ReturnType<typeof MovieTvActions.loadTopTvShows>;
+        this.loadTvShows(loadTvShowsAction.page);
       }
     });
   }
 
-  private loadMovies(): void {
-    this.movieTvService.getTopMovies().subscribe({
+  private loadMovies(page: number): void {
+    this.movieTvService.getTopMovies(page).subscribe({
       next: (response) => {
-        this.store.dispatch(MovieTvActions.loadTopMoviesSuccess({ movies: response.results.slice(0, 10) }));
+        this.store.dispatch(MovieTvActions.loadTopMoviesSuccess({ movies: response.results }));
       },
       error: (error) => {
         console.error('Error loading movies:', error);
-        this.store.dispatch({ type: '[Movies API] Movies Loaded Error' });
+        this.store.dispatch(MovieTvActions.loadTopMoviesFailure({ error }));
       }
     });
   }
 
-  private loadTvShows(): void {
-    this.movieTvService.getTopTvShows().subscribe({
+  private loadTvShows(page: number): void {
+    this.movieTvService.getTopTvShows(page).subscribe({
       next: (response) => {
-        this.store.dispatch(MovieTvActions.loadTopTvShowsSuccess({ tvShows: response.results.slice(0, 10) }));
+        this.store.dispatch(MovieTvActions.loadTopTvShowsSuccess({ tvShows: response.results }));
       },
       error: (error) => {
         console.error('Error loading TV shows:', error);
-        this.store.dispatch({ type: '[TV Shows API] TV Shows Loaded Error' });
+        this.store.dispatch(MovieTvActions.loadTopTvShowsFailure({ error }));
       }
     });
   }
