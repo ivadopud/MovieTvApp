@@ -12,6 +12,8 @@ export class MovieTvSignalService {
 
   movies = signal<any[]>([]);
   tvShows = signal<any[]>([]);
+  private loadedMoviesPages = 1;
+  private loadedTvShowsPages = 1;
 
   constructor(private http: HttpClient) {}
 
@@ -32,9 +34,12 @@ export class MovieTvSignalService {
   }
 
   loadMovies(page: number): void {
+    if (page <= this.loadedMoviesPages) return;
     this.getTopMovies(page).subscribe({
       next: (response) => {
-        this.movies.set([...this.movies(), ...response.results]);
+        const sortedMovies = [...this.movies(), ...response.results].sort((a, b) => b.vote_average - a.vote_average);
+        this.movies.set(sortedMovies);
+        this.loadedMoviesPages = page;
       },
       error: (error) => {
         console.error('Error loading movies:', error);
@@ -43,9 +48,12 @@ export class MovieTvSignalService {
   }
 
   loadTvShows(page: number): void {
+    if (page <= this.loadedTvShowsPages) return;
     this.getTopTvShows(page).subscribe({
       next: (response) => {
-        this.tvShows.set([...this.tvShows(), ...response.results]);
+        const sortedTvShows = [...this.tvShows(), ...response.results].sort((a, b) => b.vote_average - a.vote_average);
+        this.tvShows.set(sortedTvShows);
+        this.loadedTvShowsPages = page;
       },
       error: (error) => {
         console.error('Error loading TV shows:', error);

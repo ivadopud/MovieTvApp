@@ -16,6 +16,8 @@ import { MovieTvEffects } from './store/movies-tv.effects';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { RouteReuseStrategy } from '@angular/router';
+import { CustomReuseStrategy } from './custom-reuse-strategy';
 
 @NgModule({
   declarations: [AppComponent],
@@ -35,7 +37,8 @@ import { AppRoutingModule } from './app-routing.module';
     AppRoutingModule
   ],
   providers: [
-    provideHttpClient()
+    provideHttpClient(),
+    { provide: RouteReuseStrategy, useClass: CustomReuseStrategy }
   ],
   bootstrap: [AppComponent]
 })
