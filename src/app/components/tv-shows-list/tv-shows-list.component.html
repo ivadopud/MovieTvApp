@@ -1,5 +1,5 @@
 <div class="tv-shows-list">
-  <mat-card *ngFor="let show of tvShows$ | async" class="tv-shows-list__card">
+  <mat-card *ngFor="let show of tvShows$ | async" class="tv-shows-list__card" (click)="goToDetail(show)">
     <img mat-card-image [src]="'https://image.tmdb.org/t/p/w500' + show.poster_path" alt="{{ show.name }}" class="tv-shows-list__card-image">
     <mat-card-title class="tv-shows-list__card-title">{{ show.name }}</mat-card-title>
     <mat-card-content class="tv-shows-list__card-content">

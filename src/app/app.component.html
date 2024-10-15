@@ -2,7 +2,7 @@
   <span class="app-header__title">MovieTVApp - Explore Top Movies and TV Shows</span>
 </mat-toolbar>
 
-<mat-tab-group (selectedTabChange)="onTabChanged($event)">
+<mat-tab-group [selectedIndex]="activeTabIndex()" (selectedTabChange)="onTabChanged($event)" *ngIf="showTabs()">
   <mat-tab label="TV Shows"></mat-tab>
   <mat-tab label="Movies"></mat-tab>
 </mat-tab-group>

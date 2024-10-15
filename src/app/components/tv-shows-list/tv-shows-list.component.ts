@@ -17,7 +17,8 @@ import { RouterModule, Router } from '@angular/router';
 })
 export class TvShowsListComponent implements OnInit {
   tvShows$!: Observable<any[]>;
-  private currentPage = 1; 
+  private currentPage = 1;
+  private itemsPerPage = 10; // Add limit (items per page)
 
   constructor(private store: Store, private router: Router) {}
 
@@ -45,5 +46,9 @@ export class TvShowsListComponent implements OnInit {
 
   private isTvShowsRoute(): boolean {
     return this.router.url.includes('/tv-shows');
+  }
+
+  goToDetail(show: any): void {
+    this.router.navigate(['/tv-shows', show.id]);
   }
 }

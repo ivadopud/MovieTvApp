@@ -46,4 +46,8 @@ export class MoviesListComponent implements OnInit {
   private isMoviesRoute(): boolean {
     return this.router.url.includes('/movies');
   }
+
+  goToDetail(movie: any): void {
+    this.router.navigate(['/movies', movie.id]);
+  }  
 }

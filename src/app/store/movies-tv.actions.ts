@@ -8,4 +8,10 @@ export const loadTopTvShows = createAction('[TV Shows] Load Top TV Shows', props
 export const loadTopTvShowsSuccess = createAction('[TV Shows] Load Top TV Shows Success', props<{ tvShows: any[] }>());
 export const loadTopTvShowsFailure = createAction('[TV Shows] Load Top TV Shows Failure', props<{ error: any }>());
 
+export const loadMovie = createAction('[Movies] Load Movie', props<{ id: string }>());
+export const loadMovieSuccess = createAction('[Movies] Load Movie Success', props<{ movie: any }>());
+export const loadMovieFailure = createAction('[Movies] Load Movie Failure', props<{ error: any }>());
 
+export const loadTvShow = createAction('[TV Shows] Load TV Show', props<{ id: string }>());
+export const loadTvShowSuccess = createAction('[TV Shows] Load TV Show Success', props<{ tvShow: any }>());
+export const loadTvShowFailure = createAction('[TV Shows] Load TV Show Failure', props<{ error: any }>());
