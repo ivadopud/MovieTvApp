@@ -41,5 +41,15 @@ export const movieTvReducer = createReducer(
   on(MovieTvActions.loadTvShowSuccess, (state, { tvShow }) => ({
     ...state,
     selectedTvShow: tvShow
+  })),
+
+  on(MovieTvActions.resetSelectedMovie, (state) => ({
+    ...state,
+    selectedMovie: null
+  })),
+
+  on(MovieTvActions.resetSelectedTvShow, (state) => ({
+    ...state,
+    selectedTvShow: null
   }))
 );

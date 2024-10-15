@@ -4,7 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectTopMovies } from '../../store/movies-tv.selectors';
-import { loadTopMovies } from '../../store/movies-tv.actions';
+import { loadTopMovies, resetSelectedMovie } from '../../store/movies-tv.actions';
 import { RoundPipe } from '../../pipes/round.pipe';
 import { RouterModule, Router } from '@angular/router';
 
@@ -48,6 +48,7 @@ export class MoviesListComponent implements OnInit {
   }
 
   goToDetail(movie: any): void {
+    this.store.dispatch(resetSelectedMovie());
     this.router.navigate(['/movies', movie.id]);
-  }  
+  }
 }

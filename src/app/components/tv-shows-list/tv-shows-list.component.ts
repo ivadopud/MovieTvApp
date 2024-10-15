@@ -4,7 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectTopTvShows } from '../../store/movies-tv.selectors';
-import { loadTopTvShows } from '../../store/movies-tv.actions';
+import { loadTopTvShows, resetSelectedTvShow } from '../../store/movies-tv.actions';
 import { RoundPipe } from '../../pipes/round.pipe';
 import { RouterModule, Router } from '@angular/router';
 
@@ -18,7 +18,6 @@ import { RouterModule, Router } from '@angular/router';
 export class TvShowsListComponent implements OnInit {
   tvShows$!: Observable<any[]>;
   private currentPage = 1;
-  private itemsPerPage = 10; // Add limit (items per page)
 
   constructor(private store: Store, private router: Router) {}
 
@@ -49,6 +48,7 @@ export class TvShowsListComponent implements OnInit {
   }
 
   goToDetail(show: any): void {
+    this.store.dispatch(resetSelectedTvShow());
     this.router.navigate(['/tv-shows', show.id]);
   }
 }

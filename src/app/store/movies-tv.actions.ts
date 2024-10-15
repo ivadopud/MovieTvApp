@@ -15,3 +15,7 @@ export const loadMovieFailure = createAction('[Movies] Load Movie Failure', prop
 export const loadTvShow = createAction('[TV Shows] Load TV Show', props<{ id: string }>());
 export const loadTvShowSuccess = createAction('[TV Shows] Load TV Show Success', props<{ tvShow: any }>());
 export const loadTvShowFailure = createAction('[TV Shows] Load TV Show Failure', props<{ error: any }>());
+
+export const resetSelectedMovie = createAction('[Movies] Reset Selected Movie');
+export const resetSelectedTvShow = createAction('[TV Shows] Reset Selected TV Show');
+

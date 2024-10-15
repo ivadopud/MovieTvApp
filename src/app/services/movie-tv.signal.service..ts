@@ -37,7 +37,14 @@ export class MovieTvSignalService {
     if (page <= this.loadedMoviesPages) return;
     this.getTopMovies(page).subscribe({
       next: (response) => {
-        const sortedMovies = [...this.movies(), ...response.results].sort((a, b) => b.vote_average - a.vote_average);
+        const sortedMovies = [
+          ...this.movies(),
+          ...response.results.map((movie: any) => ({
+            ...movie,
+            vote_average: Math.ceil(movie.vote_average * 10) / 10
+          }))
+        ].sort((a, b) => b.vote_average - a.vote_average);
+        
         this.movies.set(sortedMovies);
         this.loadedMoviesPages = page;
       },
@@ -51,7 +58,14 @@ export class MovieTvSignalService {
     if (page <= this.loadedTvShowsPages) return;
     this.getTopTvShows(page).subscribe({
       next: (response) => {
-        const sortedTvShows = [...this.tvShows(), ...response.results].sort((a, b) => b.vote_average - a.vote_average);
+        const sortedTvShows = [
+          ...this.tvShows(),
+          ...response.results.map((show: any) => ({
+            ...show,
+            vote_average: Math.ceil(show.vote_average * 10) / 10
+          }))
+        ].sort((a, b) => b.vote_average - a.vote_average);
+        
         this.tvShows.set(sortedTvShows);
         this.loadedTvShowsPages = page;
       },

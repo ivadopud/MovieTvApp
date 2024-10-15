@@ -4,12 +4,13 @@ export class CustomReuseStrategy implements RouteReuseStrategy {
   handlers: { [key: string]: DetachedRouteHandle } = {};
 
   shouldDetach(route: ActivatedRouteSnapshot): boolean {
-    return route.routeConfig?.path !== undefined;
+    const path = route.routeConfig?.path;
+    return path !== 'movies/:id' && path !== 'tv-shows/:id';
   }
 
   store(route: ActivatedRouteSnapshot, handle: DetachedRouteHandle): void {
     const path = route.routeConfig?.path;
-    if (path) {
+    if (path && path !== 'movies/:id' && path !== 'tv-shows/:id') {
       this.handlers[path] = handle;
     }
   }
@@ -21,10 +22,7 @@ export class CustomReuseStrategy implements RouteReuseStrategy {
 
   retrieve(route: ActivatedRouteSnapshot): DetachedRouteHandle | null {
     const path = route.routeConfig?.path;
-    if (path && this.handlers[path]) {
-      return this.handlers[path];
-    }
-    return null;
+    return path && this.handlers[path] ? this.handlers[path] : null;
   }
 
   shouldReuseRoute(future: ActivatedRouteSnapshot, curr: ActivatedRouteSnapshot): boolean {
