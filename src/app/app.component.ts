@@ -1,11 +1,21 @@
 import { Component, signal } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { RouterOutlet } from '@angular/router';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [
+    trigger('routeAnimations', [
+      transition('* <=> *', [
+        style({ opacity: 0 }),
+        animate('0.5s ease-out', style({ opacity: 1 }))
+      ])
+    ])
+  ]
 })
 export class AppComponent {
   showTabs = signal(true);
@@ -23,6 +33,10 @@ export class AppComponent {
         this.activeTabIndex.set(1);
       }
     });
+  }
+
+  prepareRoute(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
 
   onTabChanged(event: any) {

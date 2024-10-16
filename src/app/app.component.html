@@ -7,4 +7,7 @@
   <mat-tab label="Movies"></mat-tab>
 </mat-tab-group>
 
-<router-outlet></router-outlet>
+<div [@routeAnimations]="prepareRoute(outlet)">
+  <router-outlet #outlet="outlet"></router-outlet>
+</div>
+
