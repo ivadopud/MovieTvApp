@@ -4,23 +4,29 @@
   </div>
 
   <mat-card class="item-detail__content">
-    <div class="item-detail__poster">
-      <img mat-card-image [src]="'https://image.tmdb.org/t/p/w500' + item.poster_path" alt="{{ item.name || item.original_name }}">
-    </div>
-    
-    <div class="item-detail__info">
-      <h2>{{ item.name || item.title }}</h2>
-      <p><strong>First Air Date:</strong> {{ item.first_air_date }}</p>
-      <p><strong>Origin Country:</strong> 
-        <span *ngFor="let country of item.origin_country; let i = index">
-          {{ country }}<span *ngIf="i !== item.origin_country.length - 1">, </span>
-        </span>
-      </p>
-      <p><strong>Original Language:</strong> {{ item.original_language | uppercase }}</p>
-      <p><strong>Popularity:</strong> {{ item.popularity }}</p>
-      <p><strong>Vote Count:</strong> {{ item.vote_count }}</p>
-      <p><strong>Rating:</strong> {{ item.vote_average | round }} / 10</p>
-      <p><strong>Overview:</strong> {{ item.overview }}</p>
+    <h2 class="item-detail__title">{{ item.name || item.title }}</h2>
+
+    <div class="item-detail__grid">
+      <div class="item-detail__poster">
+        <img mat-card-image [src]="'https://image.tmdb.org/t/p/w500' + item.poster_path" alt="{{ item.name || item.original_name }}">
+      </div>
+
+      <div class="item-detail__info">
+        <p><strong>First Air Date:</strong> {{ item.first_air_date }}</p>
+        <p><strong>Origin Country:</strong> 
+          <span *ngFor="let country of item.origin_country; let i = index">
+            {{ country }}<span *ngIf="i !== item.origin_country.length - 1">, </span>
+          </span>
+        </p>
+        <p><strong>Original Language:</strong> {{ item.original_language | uppercase }}</p>
+        <p><strong>Popularity:</strong> {{ item.popularity }}</p>
+        <p><strong>Vote Count:</strong> {{ item.vote_count }}</p>
+        <p><strong>Rating:</strong> {{ item.vote_average | round }} / 10</p>
+      </div>
+
+      <div class="item-detail__description">
+        <p><strong>Overview:</strong> {{ item.overview }}</p>
+      </div>
     </div>
   </mat-card>
 </ng-container>
