@@ -1,11 +1,12 @@
 .movies-list {
+  margin-top: calc(64px + 48px);
+  
   &__card {
     display: flex;
     flex-direction: column;
     gap: 10px;
     border-radius: var(--border-radius-medium);
     padding: 10px;
-    margin-top: calc(64px + 48px);
     cursor: pointer;
 
     &-image {
