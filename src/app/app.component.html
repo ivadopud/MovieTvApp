@@ -1,5 +1,5 @@
 <mat-toolbar color="primary" class="app-header">
-  <span class="app-header__title">MovieTVApp - Explore Top Movies and TV Shows</span>
+  <span class="app-header__title" (click)="goHome()">TV Movie App</span>
 </mat-toolbar>
 
 <mat-tab-group [selectedIndex]="activeTabIndex()" (selectedTabChange)="onTabChanged($event)" *ngIf="showTabs()">

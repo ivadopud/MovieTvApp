@@ -2,7 +2,6 @@ import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieTvSignalService } from '../../services/movie-tv.signal.service.';
-import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { RoundPipe } from '../../pipes/round.pipe';
 
@@ -11,7 +10,7 @@ import { RoundPipe } from '../../pipes/round.pipe';
   selector: 'app-item-detail',
   templateUrl: './item-detail.component.html',
   styleUrls: ['./item-detail.component.scss'],
-  imports: [CommonModule, MatCardModule, MatIconModule, RoundPipe]
+  imports: [CommonModule, MatIconModule, RoundPipe]
 })
 export class ItemDetailComponent implements OnInit {
   itemId!: string;

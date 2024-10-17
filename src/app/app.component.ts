@@ -47,4 +47,8 @@ export class AppComponent {
       this.router.navigate(['/movies']);
     }
   }
+
+  goHome() {
+    this.router.navigate(['/tv-shows']);
+  }
 }

@@ -2,30 +2,34 @@
   &__card {
     display: flex;
     flex-direction: column;
-    padding: 10px;
     gap: 10px;
+    border-radius: var(--border-radius-medium);
+    padding: 10px;
+    margin-top: calc(64px + 48px);
+    cursor: pointer;
 
     &-image {
       width: 100%;
       height: auto;
       object-fit: cover;
       margin-bottom: 10px;
+      border-radius: var(--border-radius-small);
     }
 
     &-title {
-      font-size: 1.2rem;
+      font-size: var(--font-size-medium);
       margin-bottom: 10px;
     }
 
     &-content {
-      font-size: 0.9rem;
-      color: #666;
+      font-size: var(--font-size-small);
+      color: var(--text-secondary-color);
     }
 
     &-rating {
-      font-size: 1rem;
+      font-size: var(--font-size-base);
       font-weight: bold;
-      color: #ff9800;
+      color: var(--secondary-color);
       margin-bottom: 10px;
     }
   }

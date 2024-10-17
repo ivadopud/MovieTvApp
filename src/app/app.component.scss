@@ -2,19 +2,28 @@
   display: flex;
   justify-content: space-between;
   padding: 0 20px;
+  background-color: var(--primary-color);
+  color: var(--text-header-color);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
 
   &__title {
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: white;
+    cursor: pointer;
   }
 }
 
 mat-tab-group {
-  margin-top: 10px;
+  position: fixed;
+  top: 64px;
+  width: 100%;
+  background-color: var(--background-color);
+  z-index: 999;
 }
 
 mat-tab {
-  font-size: 1.2rem;
+  font-size: var(--font-size-medium);
   text-transform: uppercase;
+  color: var(--text-color);
 }
